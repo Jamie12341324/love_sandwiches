@@ -65,6 +65,17 @@ def update_surplus_worksheet(surplus_data):
 def update_worksheet(data,worksheet):
     worksheet = SHEET.worksheet(worksheet)
     worksheet.append_row(data)
+def get_last_5_entries_sales():
+    """
+    Docstring for get_last_5_entries_sales
+    """
+    sales = SHEET.worksheet("sales")
+    # column = sales.col_values(3)
+    columns = []
+    for  ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column[len(column)-5:len(column)])
+    print(columns)
 def main():
     """
     Docstring for main run all program function
@@ -74,4 +85,5 @@ def main():
     update_worksheet(sales_data,"sales")
     surplus_data=calculate_surplus_data(sales_data)
     update_worksheet(surplus_data,"surplus")
-main()
+# main()
+get_last_5_entries_sales()
